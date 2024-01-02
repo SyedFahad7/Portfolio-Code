@@ -1,10 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Add a CSS keyframe animation for background movement */
+@keyframes moveBackgroundAnimation {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px; /* Adjust the movement distance as needed */
+  }
 }
+
+/* Apply the animation to the home-content */
 .home-content {
   background: url('images/Hero.png') center/cover no-repeat;
   height: 100vh;
@@ -14,7 +20,15 @@
   justify-content: center;
   text-align: center;
   color: #f0f0e6;
+  animation: moveBackgroundAnimation 2s infinite backwards alternate; /* Adjust the animation duration as needed */
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .home-content::before {
   content: '';
   position: absolute;
@@ -40,21 +54,28 @@
 .home-content .about__container {
   margin-top: 2rem;
 }
+
 .about__gif__container {
   height: 60%;
   width: 200%;
   display: flex;
-  justify-content:center;
-  align-items:center;
+  justify-content: center;
+  align-items: center;
   margin-left: 10%;
   margin-right: 10%;
 }
+
 .about__gif__container img {
   width: 150%;
   height: 80%;
   align-items: center;
   margin-top: 5%;
   margin-right: 55%;
+  transition: transform 0.3s;
+}
+
+.about__gif__container:hover img {
+  transform: scale(1.2); /* Increase the scale on hover (adjust as needed) */
 }
 
 body {
@@ -74,10 +95,12 @@ header {
 
 /* ////........Navbar.......//// */
 
+/* Navbar Styling */
 .navbar {
   position: fixed;
   width: 100%;
   z-index: 500;
+/* Set your desired background color */
 }
 
 .navbar-container {
@@ -85,56 +108,105 @@ header {
   justify-content: space-between;
   align-items: center;
   height: 64px;
+  padding: 0 2rem; /* Added padding for better spacing */
 }
 
 .menu-items {
   display: flex;
+  list-style: none; /* Removed list-style for a cleaner look */
+  margin: 0;
+  padding: 0;
 }
 
 .menu-items li {
-  list-style:square ;
   padding: 1rem;
 }
 
+/* Button Styling */
+.button {
+  --hover-bg: #ffffff; /* Set your desired hover background color */
+  --hover-text: #07374a; /* Set your desired hover text color */
+  color: #f0f0e6;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 0.8em 2em;
+  background: transparent;
+  transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.button:hover {
+  color: var(--hover-text);
+  transform: translate(0, -2px);
+  background: var(--hover-bg);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.button:active {
+  transform: translate(0);
+  box-shadow: none;
+}
+
+/* Menu Link Styling */
 .menu-items a {
-  text-decoration: green wavy underline;
-  color: whitesmoke;
+  text-decoration: none;
+  color: #a5a508;
   font-size: 1.3rem;
   padding: 0.3rem;
+  transition: border-bottom 0.3s;
 }
 
 .menu-items a:hover {
-  border-bottom: 1mm dashed rgba(247, 41, 41, 0.6);
+  border-bottom: 2px solid rgba(247, 41, 41, 0.6);
 }
 
+/* Logo Styling */
 .navbar .logo {
   order: 1;
   color: #f0f0e6;
   font-size: 2rem;
 }
 
+
 /* ////........Home Content........//// */
+/* Home Content Styling */
+/* Home Content Styling */
+.home-content {
+  position: relative;
+}
 
 .home-content .name {
   position: absolute;
   top: 47%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  color: yellowgreen ;
+  transform: translate(-50%,-50%);
+  color: yellowgreen;
   width: 100%;
   text-align: center;
   margin-top: 10%;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.home-content .name:hover {
+  color: #46b0da; /* Set your desired hover color */
+   /* Add the enlarging effect on hover */
 }
 
 .home-content .name h1 {
-  font-size: 2.2rem;
+  font-size: 2.5rem; /* Adjusted font size for better visibility */
   text-align: center;
 }
 
 .home-content .name p {
   color: #f0f0e6;
-  font-size: 1.5rem;
+  font-size: 1.8rem; /* Adjusted font size for better visibility */
+  transition: color 0.3s; /* Added transition for the text color on hover */
 }
+
+.home-content .name:hover p {
+  color: #eeff00; /* Set your desired hover color */
+}
+
 
 .angle-down-icon {
   position: absolute;
@@ -144,13 +216,25 @@ header {
   font-size: 2rem;
   border: 3px solid #07374a;
   border-radius: 50%;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.angle-down-icon:hover {
+  transform: translate(-50%, -50%) scale(1.2);
+  background-color: #12caac; /* Set your desired hover color */
 }
 
 .angle-down-icon a {
   text-decoration: none;
   color: #07374a;
   padding: 1rem;
+  transition: color 0.3s;
 }
+
+.angle-down-icon a:hover {
+  color: #ffffff; /* Set your desired hover color */
+}
+
 
 /* ////........About Me........//// */
 
@@ -164,6 +248,12 @@ header {
   font-size: 2rem;
   font-weight: 600;
   text-align: center;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.about-me .about-heading:hover {
+  color: #f0f0e6;
+  transform: scale(1.1);
 }
 
 .about-content img {
@@ -171,6 +261,11 @@ header {
   width: 150px;
   object-fit: cover;
   border-radius: 50%;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.about-content img:hover {
+  transform: scale(1.1); /* Adjust the scale factor as needed */
 }
 
 .about-content p {
@@ -179,6 +274,7 @@ header {
   padding: 0 2.3rem;
   text-align: center;
 }
+
 
 .skills .skills-heading {
   font-size: 2rem;
@@ -202,18 +298,27 @@ header {
 }
 
 /* ///.....Skill Bar....../// */
-
 .skills-bar {
   padding: 25px 30px;
 }
 
 .skills-bar .bar {
   margin: 25px 0;
+  transition: background-color 0.3s;
+}
+
+.skills-bar:hover .bar {
+  background-color: #07374a; /* Change the color on hover */
 }
 
 .skills-bar .bar .info span {
   font-size: 1rem;
   font-weight: 500;
+  transition: color 0.3s; /* Add transition for color change */
+}
+
+.skills-bar:hover .bar .info span {
+  color: #f0f0e6; /* Change the color on hover */
 }
 
 .skills-bar .bar .info {
@@ -232,6 +337,10 @@ header {
   animation: animate 2s cubic-bezier(1, 0, 0.5, 1) forwards;
 }
 
+.bar:hover .progress-line {
+  background-color: #07374a; /* Change the color on hover */
+}
+
 .bar .progress-line span {
   position: absolute;
   background: #f10303;
@@ -240,6 +349,10 @@ header {
   transform: scaleX(0);
   transform-origin: left;
   animation: animate 2.5s 2s cubic-bezier(1, 0, 0.5, 1) forwards;
+}
+
+.bar:hover .progress-line span {
+  background-color: #f0f0e6; /* Change the color on hover */
 }
 
 @keyframes animate {
@@ -263,7 +376,7 @@ header {
 .progress-line .c {
   width: 80%;
 }
-.progress-line .Mysql{
+.progress-line .Mysql {
   width: 60%;
 }
 
@@ -312,6 +425,7 @@ header {
   content: "60%";
 }
 
+
 .navbar.solid {
   background-color: #07374a;
   transition: background-color 1s ease 0s;
@@ -354,6 +468,7 @@ header {
 
 /* ////.....Portfolio......///// */
 
+/* Portfolio Section */
 .portfolio {
   background: #25b79f;
   padding: 6rem 0;
@@ -362,81 +477,17 @@ header {
 .proj-heading h1 {
   text-align: center;
   color: #07374a;
-  font-size: 2.3rem;
+  font-size: 2.5rem;
   font-weight: 700;
   margin: 3rem 0;
+  transition: color 0.3s ease-in-out; /* Hover effect added */
 }
 
-.proj-1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.proj-1 img {
-  height: 330px;
-  width: 380px;
-  object-fit: cover;
-  border-radius: 50%;
-  box-shadow: 0 20px 10px -10px rgb(37 41 52 / 31%);
-  margin-right: 1.7rem;
-}
-
-.proj-1 .proj1-details {
-  width: 32rem;
-}
-
-.proj-1 .proj1-details i {
-  font-size: 1.5rem;
-  color: #07374a;
-}
-
-.proj-1 .proj1-details h2 {
-  font-size: 2rem;
-  color: #07374a;
-}
-
-.proj-1 .proj1-details p {
-  font-size: 1.3rem;
-  color: #07374a;
-  font-weight: 600;
-}
-
-.proj-1 .proj1-details button {
-  background: #f0f0e6;
-  padding: 0.5rem;
-  margin-top: 0.5rem;
-  width: 150px;
-  border: none;
-  border-bottom: 2px solid #07374a;
-}
-
-.proj-1 .proj1-details button a {
-  text-decoration: none;
-  color: #07374a;
-  font-size: 1.1rem;
-  transition: 0.2s ease-in-out;
-  text-align: center;
-  transition: 0.3s ease-in-out;
-}
-
-.proj-1 .proj1-details button .fas {
-  font-size: 0.7rem;
-  padding: 0.3rem;
-  transition: 0.2s ease-in-out;
-}
-
-.proj-1 .proj1-details button:hover {
-  background: #07374a;
-}
-
-.proj-1 .proj1-details button:hover a,
-.proj-1 .proj1-details button:hover .fas {
+.proj-heading h1:hover {
   color: #f0f0e6;
 }
 
-/* ////.....proj2.....//// */
-
+.proj-1,
 .proj-2 {
   display: flex;
   justify-content: center;
@@ -444,6 +495,7 @@ header {
   margin-top: 3rem;
 }
 
+.proj-1 img,
 .proj-2 img {
   height: 330px;
   width: 380px;
@@ -451,88 +503,86 @@ header {
   border-radius: 50%;
   box-shadow: 0 20px 10px -10px rgb(37 41 52 / 31%);
   margin-right: 1.7rem;
+  transition: transform 0.3s ease-in-out; /* Hover effect added */
 }
 
-.proj-2 .proj2-details {
+.proj-1 img:hover,
+.proj-2 img:hover {
+  transform: scale(1.1);
+}
+
+.proj1-details,
+.proj2-details {
   width: 32rem;
 }
 
-.proj-2 .proj2-details i {
+.proj1-details i,
+.proj2-details i {
   font-size: 1.5rem;
   color: #07374a;
 }
 
-.proj-2 .proj2-details h2 {
+.proj1-details h2,
+.proj2-details h2 {
   font-size: 2rem;
   color: #07374a;
+  transition: color 0.3s ease-in-out; /* Hover effect added */
 }
 
-.proj-2 .proj2-details p {
+.proj1-details:hover h2,
+.proj2-details:hover h2 {
+  color: #f0f0e6;
+}
+
+.proj1-details p,
+.proj2-details p {
   font-size: 1.3rem;
   color: #07374a;
   font-weight: 600;
 }
 
-.proj-2 .proj2-details button {
+.proj1-details button,
+.proj2-details button,
+.more-work a {
   background: #f0f0e6;
   padding: 0.5rem;
   margin-top: 0.5rem;
   width: 150px;
   border: none;
   border-bottom: 2px solid #07374a;
+  transition: background 0.3s ease-in-out; /* Hover effect added */
 }
 
-.proj-2 .proj2-details button a {
-  text-decoration: none;
-  color: #07374a;
-  font-size: 1.1rem;
-  transition: 0.2s ease-in-out;
-  text-align: center;
-  transition: 0.3s ease-in-out;
-}
-
-.proj-2 .proj2-details button .fas {
-  font-size: 0.7rem;
-  padding: 0.3rem;
-  transition: 0.2s ease-in-out;
-}
-
-.proj-2 .proj2-details button:hover {
+.proj1-details button:hover,
+.proj2-details button:hover,
+.more-work a:hover {
   background: #07374a;
 }
 
-.proj-2 .proj2-details button:hover a,
-.proj-2 .proj2-details button:hover .fas {
-  color: #f0f0e6;
-}
-
-.more-work {
-  text-align: center;
-  margin: 3rem 0 1rem 0;
-}
-
-.more-work p {
-  font-size: 1.6rem;
-  color: #07374a;
-  font-weight: 500;
-}
-
+.proj1-details button a,
+.proj2-details button a,
 .more-work a {
   text-decoration: none;
-  color: #f0f0e6;
-  font-size: 1.3rem;
+  color: #07374a;
+  font-size: 1.1rem;
+  text-align: center;
+  transition: color 0.3s ease-in-out; /* Hover effect added */
 }
 
+.proj1-details button:hover a,
+.proj2-details button:hover a,
 .more-work a:hover {
-  border-bottom: 2px solid #f0f0e6;
+  color: #f0f0e6;
 }
+
 
 /* ////......Contact......///// */
 
 .contact {
-  background: #07374a;
+  background: #000;
   position: relative;
   height: 92vh;
+  overflow: hidden; /* To prevent content overflow */
 }
 
 .contact-content {
@@ -541,38 +591,67 @@ header {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+  width: 100%;
 }
 
 .contact-content h2 {
-  font-size: 2.5rem;
-  font-weight: 400;
-  color: #25b79f;
-  padding-bottom: 0.5rem;
+  font-size: 3rem;
+  font-weight: 600;
+  color: #00ff22;
+  padding-bottom: 1rem;
+  margin: 0;
+  transition: transform 0.3s, color 0.3s;
 }
+
+.contact-content h2:hover {
+  transform: scale(1.1); /* Adjust the scale factor as needed */
+  color: #ffee00; /* Change color on hover if desired */
+}
+
 
 .contact-content .mail {
   color: #f0f0e6;
-  padding-bottom: 0.2rem;
-  font-size: 1rem;
+  padding-bottom: 1rem;
+  font-size: 1.5rem;
+  transition: transform 0.3s, color 0.3s;
 }
 
-.contact-content .links {
-  color: #25b79f;
-  padding: 0.5rem;
-  padding-bottom: 1.8rem;
-  font-size: 1rem;
+.contact-content .mail:hover {
+  transform: scale(1.1); /* Adjust the scale factor as needed */
+  color: #ffffff; /* Change color on hover if desired */
 }
+
+
+.contact-content .links {
+  color: #00ff22;
+  padding: 1rem;
+  font-size: 1.5rem;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.contact-content .links:hover {
+  transform: scale(1.1); /* Adjust the scale factor as needed */
+  color: #ff7b00; /* Change color on hover if desired */
+}
+
 
 .contact-content a {
   text-decoration: none;
   color: #25b79f;
-  padding: 0.5rem;
-  transition: 0.3s ease-in-out;
+  padding: 1rem;
+  font-size: 1.5rem;
+  transition: transform 0.3s, color 0.3s;
 }
 
 .contact-content a:hover {
   color: #f0f0e6;
+  transform: scale(1.1);
 }
+
+
+
+
+
 
 /* ////......Media query......//// */
 
