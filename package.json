@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "author": "Fahad",
   "private": true,
-  "homepage": "https://syedfahad.tech",
+  "homepage": "/",
   "scripts": {
     "css": "postcss assets/styles/main.css -o build/assets/styles/main.min.css --verbose",
     "server-reload": "browser-sync start --config './browser-sync-config.js'",
